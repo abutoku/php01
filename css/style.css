@@ -1,0 +1,21 @@
+body {
+  box-sizing: border-box;
+}
+
+#wrapper {
+  padding: 24px;
+}
+
+#color_select input {
+  display: block;
+}
+
+label {
+  display: flex;
+}
+
+/* #color_select {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} */
