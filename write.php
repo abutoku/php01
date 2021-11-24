@@ -12,7 +12,7 @@ $place = $_POST["place"];
 //exit();
 
 // データ1件を1行にまとめる（最後に改行を入れる）
-$write_data = "{$color} {$place}\n";
+$write_data = "{$color},{$place}\n";
 
 //var_dump($write_data);
 //exit();

@@ -1,21 +1,100 @@
+/* googleフォント読み込み */
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap');
+
+/* 全体のスタイル */
 body {
   box-sizing: border-box;
+  background-color: cadetblue;
 }
 
 #wrapper {
   padding: 24px;
+  background-color: cornsilk;
+  width:90%;
+  margin: 0 auto;
+  height: 1200px;
 }
 
-#color_select input {
-  display: block;
+/* リンクのスタイルを初期化 */
+a:link,
+a:visited,
+a:hover, 
+a:active {  
+    text-decoration: none;  
+    color: #000;  
+} 
+/* リストの点を消す */
+li {
+  list-style: none;
+}
+
+/* ----------------index.phpのスタイル ---------------*/
+#main {
+  display: flex;
+}
+
+form,
+#img_contents {
+  width: 50%;
+}
+
+#img_contents {
+  display: flex;
+  justify-content: center;
+  
+}
+
+#top_img {
+  width: 60%;
+  object-fit: scale-down;
 }
 
 label {
   display: flex;
 }
 
-/* #color_select {
+h1 {
+  font-size: 68px;
+  font-family: 'Roboto Slab', serif;
+}
+
+#chart_link {
+  margin-top: 24px;
+  margin-bottom: 24px;
+  width: 200px;
+  height: 40px;
+  border-radius: 10px;
+  background-color: darkgray;
   display: flex;
   justify-content: center;
   align-items: center;
-} */
+}
+
+#chart_link a {
+  font-size: 16px;
+  color: white;
+}
+
+#place_section {
+  margin-top: 24px;
+}
+
+#place_select {
+  height: 30px;
+  width: 200px;
+}
+
+#btn_section {
+  margin-top: 24px;
+}
+
+#send_btn {
+  height: 30px;
+  width: 180px;
+  cursor: pointer;
+}
+
+/* ---------------output.phpのスタイル -------------*/
+#canvas_area {
+  display: flex;
+}
