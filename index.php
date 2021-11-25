@@ -16,13 +16,20 @@
 
 <body>
   <div id="wrapper">
-    <h1>CAT COUNTER</h1>
+    <!-- ヘッダー部分 -->
+    <div class="link">
+      <h1>CAT COUNTER</h1>
+      <a href="analyse.php">CAT ANALYSE</a>
+    </div>
+
+    <!-- グラフ表示部分 -->
     <h2 id="chart_link"><a href="output.php">グラフを表示</a></h2>
+
 
     <div id="main">
       <form action="write.php" method="post">
-  
-      <!-- 毛色選択部分 -->
+
+        <!-- 毛色選択部分 -->
         <section id="color_section">
           <h2>猫の毛色を選択</h2>
           <div id="color_select">
@@ -40,8 +47,8 @@
             <label><input type="radio" id="other" value="other" name="cat_color">その他</label>
           </div>
         </section>
-  
-      <!-- 目撃場所選択部分 -->
+
+        <!-- 目撃場所選択部分 -->
         <section id="place_section">
           <h2 id="top_h2">出現場所</h2>
           <select name="place" id="place_select">
@@ -55,16 +62,18 @@
             <option value="jyou">城南区</option>
           </select>
         </section>
-  
-      <!-- 登録ボタン部分 -->
+
+        <!-- 登録ボタン部分 -->
         <section id="btn_section">
           <button id="send_btn">登録</button>
         </section>
-  
+
       </form>
+
       <div id="img_contents">
-        <img id="top_img"src="./img/cat_01.PNG" alt="猫">
+        <img id="top_img" src="./img/cat_01.PNG" alt="猫">
       </div>
+      
     </div>
   </div>
   <!--wrapperここまで -->
@@ -73,19 +82,18 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
   <script>
-
     //最初の初期表示 
     $('#place_section').hide(); //場所選択を隠す
     $('#btn_section').hide(); //登録ボタンを隠す
 
     //色が選択されたら
     $('#color_select').change(function() {
-      $('#place_section').show();//場所選択を出す
+      $('#place_section').show(); //場所選択を出す
     });
 
     //場所が選択されたら
     $('#place_select').change(function() {
-      $('#btn_section').show();//登録ボタンを出す
+      $('#btn_section').show(); //登録ボタンを出す
     });
 
   </script>

@@ -41,6 +41,7 @@ fclose($file);
 
 <body>
   <div id="wrapper">
+
     <div id="canvas_area">
       <div id="canvas_1" style="width:70%;height:400">
         <canvas id="cat_chart_1"></canvas>
@@ -49,43 +50,32 @@ fclose($file);
         <canvas id="cat_chart_2"></canvas>
       </div>
     </div>
-    <!-- 目撃場所選択部分 -->
-    <section id="place_section">
-      <h2 id="top_h2">出現場所</h2>
-      <select name="place" id="place_select">
-        <option disabled selected value>場所を選択</option>
-        <option value="east">東区</option>
-        <option value="center">中央区</option>
-        <option value="hakata">博多区</option>
-        <option value="west">西区</option>
-        <option value="south">南区</option>
-        <option value="sawara">早良区</option>
-        <option value="jyou">城南区</option>
-      </select>
-      <button id="update">更新</button>
-    </section>
-    <div id="canvas_3" style="width:50%;height:150">
+
+    <div id="canvas_3" style="width:80%;height:200">
       <canvas id="cat_chart_3"></canvas>
     </div>
+
+  <a class="top_btn" href="index.php">TOP</a>
+
   </div>
+
+
   <!-- jquery読み込み -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
   <!-- Chart.js読み込み -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.min.js"></script>
 
-
-
-  <script type="module">
+  <script>
     'use strict';
 
     const catArray = []; //猫情報配列を定義
     const inputArray = <?= json_encode($result) ?>; //PHPの$resultをjson_encodeで取得
 
     inputArray.forEach((x) => { //繰り返し処理でオブジェクト作成
-      catArray.push({
-        color: x[0],
-        place: x[1],
+      catArray.push({ //catArrayに追加
+        color: x[0], //キーcolor
+        place: x[1], //キーplace
       });
     });
     //毛色と場所で分けた猫情報オブジェクトが完成！
@@ -116,7 +106,7 @@ fclose($file);
       jyou: 0,
     }
 
-    for (let i = 0; i < catArray.length; i++) {
+    for (let i = 0; i < catArray.length; i++) { //猫の数をカウント
       switch (catArray[i].color) {
         case 'kiji':
           colors.kiji++;
@@ -157,7 +147,7 @@ fclose($file);
       }
     }
 
-    for (let i = 0; i < catArray.length; i++) {
+    for (let i = 0; i < catArray.length; i++) { //猫の場所をカウント
       switch (catArray[i].place) {
         case 'east':
           places.east++;
@@ -183,39 +173,401 @@ fclose($file);
       }
     };
 
-    const eastArray = [];
-    const centerArray = [];
-    const hakataArray = [];
-    const westArray = [];
-    const southArray = [];
-    const sawaraArray = [];
-    const jyouArray = [];
+    const east = {
+      kiji: 0,
+      saba: 0,
+      chatora: 0,
+      siro: 0,
+      kuro: 0,
+      gray: 0,
+      sirokuro: 0,
+      kijisiro: 0,
+      chasiro: 0,
+      mike: 0,
+      sabi: 0,
+      other: 0,
+    };
 
-    catArray.forEach((x) => {
+    const center = {
+      kiji: 0,
+      saba: 0,
+      chatora: 0,
+      siro: 0,
+      kuro: 0,
+      gray: 0,
+      sirokuro: 0,
+      kijisiro: 0,
+      chasiro: 0,
+      mike: 0,
+      sabi: 0,
+      other: 0,
+    };
+
+    const hakata = {
+      kiji: 0,
+      saba: 0,
+      chatora: 0,
+      siro: 0,
+      kuro: 0,
+      gray: 0,
+      sirokuro: 0,
+      kijisiro: 0,
+      chasiro: 0,
+      mike: 0,
+      sabi: 0,
+      other: 0,
+    };
+
+    const west = {
+      kiji: 0,
+      saba: 0,
+      chatora: 0,
+      siro: 0,
+      kuro: 0,
+      gray: 0,
+      sirokuro: 0,
+      kijisiro: 0,
+      chasiro: 0,
+      mike: 0,
+      sabi: 0,
+      other: 0,
+    };
+
+    const south = {
+      kiji: 0,
+      saba: 0,
+      chatora: 0,
+      siro: 0,
+      kuro: 0,
+      gray: 0,
+      sirokuro: 0,
+      kijisiro: 0,
+      chasiro: 0,
+      mike: 0,
+      sabi: 0,
+      other: 0,
+    };
+
+    const sawara = {
+      kiji: 0,
+      saba: 0,
+      chatora: 0,
+      siro: 0,
+      kuro: 0,
+      gray: 0,
+      sirokuro: 0,
+      kijisiro: 0,
+      chasiro: 0,
+      mike: 0,
+      sabi: 0,
+      other: 0,
+    };
+
+    const jyou = {
+      kiji: 0,
+      saba: 0,
+      chatora: 0,
+      siro: 0,
+      kuro: 0,
+      gray: 0,
+      sirokuro: 0,
+      kijisiro: 0,
+      chasiro: 0,
+      mike: 0,
+      sabi: 0,
+      other: 0,
+    };
+
+    catArray.forEach((x) => { //場所別の猫を数をカウント
       switch (x.place) {
         case 'east':
-          eastArray.push(x);
-          break;
+          switch (x.color) {
+            case 'kiji':
+              east.kiji++;
+              break;
+            case 'saba':
+              east.saba++;
+              break;
+            case 'chatora':
+              east.chatora++;
+              break;
+            case 'siro':
+              east.siro++;
+              break;
+            case 'kuro':
+              east.kuro++;
+              break;
+            case 'gray':
+              east.gray++;
+              break;
+            case 'sirokuro':
+              east.sirokuro++;
+              break;
+            case 'kijisiro':
+              east.kijisiro++;
+              break;
+            case 'chasiro':
+              east.chasiro++;
+              break;
+            case 'mike':
+              east.mike++;
+              break;
+            case 'sabi':
+              east.sabi++;
+              break;
+            case 'other':
+              east.other++;
+              break;
+          }
+          break; //case 'east'ここまで
+
         case 'center':
-          centerArray.push(x);
-          break;
+          switch (x.color) {
+            case 'kiji':
+              center.kiji++;
+              break;
+            case 'saba':
+              center.saba++;
+              break;
+            case 'chatora':
+              center.chatora++;
+              break;
+            case 'siro':
+              center.siro++;
+              break;
+            case 'kuro':
+              center.kuro++;
+              break;
+            case 'gray':
+              center.gray++;
+              break;
+            case 'sirokuro':
+              center.sirokuro++;
+              break;
+            case 'kijisiro':
+              center.kijisiro++;
+              break;
+            case 'chasiro':
+              center.chasiro++;
+              break;
+            case 'mike':
+              center.mike++;
+              break;
+            case 'sabi':
+              center.sabi++;
+              break;
+            case 'other':
+              center.other++;
+              break;
+          }
+          break; //case 'center'ここまで
+
         case 'hakata':
-          hakataArray.push(x);
-          break;
+          switch (x.color) {
+            case 'kiji':
+              hakata.kiji++;
+              break;
+            case 'saba':
+              hakata.saba++;
+              break;
+            case 'chatora':
+              hakata.chatora++;
+              break;
+            case 'siro':
+              hakata.siro++;
+              break;
+            case 'kuro':
+              hakata.kuro++;
+              break;
+            case 'gray':
+              hakata.gray++;
+              break;
+            case 'sirokuro':
+              hakata.sirokuro++;
+              break;
+            case 'kijisiro':
+              hakata.kijisiro++;
+              break;
+            case 'chasiro':
+              hakata.chasiro++;
+              break;
+            case 'mike':
+              hakata.mike++;
+              break;
+            case 'sabi':
+              hakata.sabi++;
+              break;
+            case 'other':
+              hakata.other++;
+              break;
+          }
+          break; //case 'hakata'ここまで
+
         case 'west':
-          westArray.push(x);
-          break;
+          switch (x.color) {
+            case 'kiji':
+              west.kiji++;
+              break;
+            case 'saba':
+              west.saba++;
+              break;
+            case 'chatora':
+              west.chatora++;
+              break;
+            case 'siro':
+              west.siro++;
+              break;
+            case 'kuro':
+              west.kuro++;
+              break;
+            case 'gray':
+              west.gray++;
+              break;
+            case 'sirokuro':
+              west.sirokuro++;
+              break;
+            case 'kijisiro':
+              west.kijisiro++;
+              break;
+            case 'chasiro':
+              west.chasiro++;
+              break;
+            case 'mike':
+              west.mike++;
+              break;
+            case 'sabi':
+              west.sabi++;
+              break;
+            case 'other':
+              west.other++;
+              break;
+          }
+          break; //case 'west'ここまで
+
         case 'south':
-          southArray.push(x);
-          break;
+          switch (x.color) {
+            case 'kiji':
+              south.kiji++;
+              break;
+            case 'saba':
+              south.saba++;
+              break;
+            case 'chatora':
+              south.chatora++;
+              break;
+            case 'siro':
+              south.siro++;
+              break;
+            case 'kuro':
+              south.kuro++;
+              break;
+            case 'gray':
+              south.gray++;
+              break;
+            case 'sirokuro':
+              south.sirokuro++;
+              break;
+            case 'kijisiro':
+              south.kijisiro++;
+              break;
+            case 'chasiro':
+              south.chasiro++;
+              break;
+            case 'mike':
+              south.mike++;
+              break;
+            case 'sabi':
+              south.sabi++;
+              break;
+            case 'other':
+              south.other++;
+              break;
+          }
+          break; //case 'south'ここまで
+
         case 'sawara':
-          sawaraArray.push(x);
-          break;
+          switch (x.color) {
+            case 'kiji':
+              sawara.kiji++;
+              break;
+            case 'saba':
+              sawara.saba++;
+              break;
+            case 'chatora':
+              sawara.chatora++;
+              break;
+            case 'siro':
+              sawara.siro++;
+              break;
+            case 'kuro':
+              sawara.kuro++;
+              break;
+            case 'gray':
+              sawara.gray++;
+              break;
+            case 'sirokuro':
+              sawara.sirokuro++;
+              break;
+            case 'kijisiro':
+              sawara.kijisiro++;
+              break;
+            case 'chasiro':
+              sawara.chasiro++;
+              break;
+            case 'mike':
+              sawara.mike++;
+              break;
+            case 'sabi':
+              sawara.sabi++;
+              break;
+            case 'other':
+              sawara.other++;
+              break;
+          }
+          break; //case 'sawara'ここまで
+
         case 'jyou':
-          jyouArray.push(x);
-          break;
+          switch (x.color) {
+            case 'kiji':
+              jyou.kiji++;
+              break;
+            case 'saba':
+              jyou.saba++;
+              break;
+            case 'chatora':
+              jyou.chatora++;
+              break;
+            case 'siro':
+              jyou.siro++;
+              break;
+            case 'kuro':
+              jyou.kuro++;
+              break;
+            case 'gray':
+              jyou.gray++;
+              break;
+            case 'sirokuro':
+              jyou.sirokuro++;
+              break;
+            case 'kijisiro':
+              jyou.kijisiro++;
+              break;
+            case 'chasiro':
+              jyou.chasiro++;
+              break;
+            case 'mike':
+              jyou.mike++;
+              break;
+            case 'sabi':
+              jyou.sabi++;
+              break;
+            case 'other':
+              jyou.other++;
+              break;
+          }
+          break; //case 'jyou'ここまで
       }
-    })
+    });
 
     var type_1 = 'bar';
     var type_2 = 'pie';
@@ -342,8 +694,9 @@ fclose($file);
 
 
 
-    //canvas を描画するための、 ctx を取得
+    //canvas を描画するための変数
     var ctx_1 = document.getElementById('cat_chart_1').getContext('2d');
+    //canvas2 を描画するための変数
     var ctx_2 = document.getElementById('cat_chart_2').getContext('2d');
 
 
@@ -353,193 +706,226 @@ fclose($file);
       data: data_1,
       options: options_1,
     });
-
+    
+    //上記をmyChartに渡す
     var myChart = new Chart(ctx_2, {
       type: type_2,
       data: data_2,
       options: options_2,
     });
 
+    let select_place = [];
+    let text = '';
 
-    $('#place_select').change(function() {
+    var type_3 = 'bar';
 
-      let select_place = [];
-      let text = '';
-
-      let select = $('#place_select').val();
-
-      switch (select) {
-        case 'east':
-          select_place = eastArray;
-          text = '東区';
-          break;
-        case 'center':
-          select_place = centerArray;
-          text = '中央区';
-          break;
-        case 'hakata':
-          select_place = hakataArray;
-          text = '博多区';
-          break;
-        case 'west':
-          select_place = westArray;
-          text = '西区';
-          break;
-        case 'south':
-          select_place = southArray;
-          text = '南区';
-          break;
-        case 'sawara':
-          select_place = sawaraArray;
-          text = '早良区';
-          break;
-        case 'jyou':
-          select_place = jyouArray;
-          text = '城南区';
-          break;
-      }
-
-      console.log(select_place);
-
-      let colors_2 = {
-        kiji: 0,
-        saba: 0,
-        chatora: 0,
-        siro: 0,
-        kuro: 0,
-        gray: 0,
-        sirokuro: 0,
-        kijisiro: 0,
-        chasiro: 0,
-        mike: 0,
-        sabi: 0,
-        other: 0,
-      }
-
-      for (let i = 0; i < select_place.length; i++) {
-        switch (select_place[i].color) {
-          case 'kiji':
-            colors_2.kiji++;
-            break;
-          case 'saba':
-            colors_2.saba++;
-            break;
-          case 'chatora':
-            colors_2.chatora++;
-            break;
-          case 'siro':
-            colors_2.siro++;
-            break;
-          case 'kuro':
-            colors_2.kuro++;
-            break;
-          case 'gray':
-            colors_2.gray++;
-            break;
-          case 'sirokuro':
-            colors_2.sirokuro++;
-            break;
-          case 'kijisiro':
-            colors_2.kijisiro++;
-            break;
-          case 'chasiro':
-            colors_2.chasiro++;
-            break;
-          case 'mike':
-            colors_2.mike++;
-            break;
-          case 'sabi':
-            colors_2.sabi++;
-            break;
-          case 'other':
-            colors_2.other++;
-            break;
-        }
-      }
-
-      console.log(colors_2);
-
-      var type_3 = 'doughnut';
-      var data_3 = {
-        labels: [
-          'キジトラ',
-          'サバトラ',
-          '茶トラ',
-          '白',
-          '黒',
-          'グレー',
-          '白黒',
-          'キジ白',
-          '茶白',
-          '三毛',
-          'サビ',
-          'その他',
-        ], //labelsここまで
-        datasets: [{
+    var data_3 = {
+      labels: [
+        '東区',
+        '中央区',
+        '博多区',
+        '西区',
+        '南区',
+        '早良区',
+        '城南区',
+      ], //labelsここまで
+      datasets: [{
+          label: 'キジトラ',
           data: [
-            colors_2.kiji,
-            colors_2.saba,
-            colors_2.chatora,
-            colors_2.siro,
-            colors_2.kuro,
-            colors_2.gray,
-            colors_2.sirokuro,
-            colors_2.kijisiro,
-            colors_2.chasiro,
-            colors_2.mike,
-            colors_2.sabi,
-            colors_2.other,
+            east.kiji,
+            center.kiji,
+            hakata.kiji,
+            west.kiji,
+            south.kiji,
+            sawara.kiji,
+            jyou.kiji,
           ],
-          backgroundColor: [
-            '#DE6641',
-            '#E8AC51',
-            '#F2E55C',
-            '#AAC863',
-            '#39A869',
-            '#27ACA9',
-            '#00AEE0',
-            '#4784BF',
-            '#5D5099',
-            '#A55B9A',
-            '#DC669B',
-            '#DD6673'
+          backgroundColor: '#DE6641',
+        },
+        {
+          label: 'サバトラ',
+          data: [
+            east.saba,
+            center.saba,
+            hakata.saba,
+            west.saba,
+            south.saba,
+            sawara.saba,
+            jyou.saba,
           ],
-        }, ] //datasetsここまで
-      };
+          backgroundColor: '#E8AC51',
+        },
+        {
+          label: '茶トラ',
+          data: [
+            east.chatora,
+            center.chatora,
+            hakata.chatora,
+            west.chatora,
+            south.chatora,
+            sawara.chatora,
+            jyou.chatora,
+          ],
+          backgroundColor: '#F2E55C',
+        },
+        {
+          label: '白',
+          data: [
+            east.siro,
+            center.siro,
+            hakata.siro,
+            west.siro,
+            south.siro,
+            sawara.siro,
+            jyou.siro,
+          ],
+          backgroundColor: '#AAC863',
+        },
+        {
+          label: '黒',
+          data: [
+            east.kuro,
+            center.kuro,
+            hakata.kuro,
+            west.kuro,
+            south.kuro,
+            sawara.kuro,
+            jyou.kuro,
+          ],
+          backgroundColor: '#39A869',
+        },
+        {
+          label: '灰色',
+          data: [
+            east.gray,
+            center.gray,
+            hakata.gray,
+            west.gray,
+            south.gray,
+            sawara.gray,
+            jyou.gray,
+          ],
+          backgroundColor: '#27ACA9',
+        },
+        {
+          label: '白黒',
+          data: [
+            east.sirokuro,
+            center.sirokuro,
+            hakata.sirokuro,
+            west.sirokuro,
+            south.sirokuro,
+            sawara.sirokuro,
+            jyou.sirokuro,
+          ],
+          backgroundColor: '#00AEE0',
+        },
+        {
+          label: 'キジ白',
+          data: [
+            east.kijisiro,
+            center.kijisiro,
+            hakata.kijisiro,
+            west.kijisiro,
+            south.kijisiro,
+            sawara.kijisiro,
+            jyou.kijisiro,
+          ],
+          backgroundColor: '#4784BF',
+        },
+        {
+          label: '茶白',
+          data: [
+            east.chasiro,
+            center.chasiro,
+            hakata.chasiro,
+            west.chasiro,
+            south.chasiro,
+            sawara.chasiro,
+            jyou.chasiro,
+          ],
+          backgroundColor: '#5D5099',
+        },
+        {
+          label: '三毛',
+          data: [
+            east.mike,
+            center.mike,
+            hakata.mike,
+            west.mike,
+            south.mike,
+            sawara.mike,
+            jyou.mike,
+          ],
+          backgroundColor: '#A55B9A',
+        },
+        {
+          label: 'サビ',
+          data: [
+            east.sabi,
+            center.sabi,
+            hakata.sabi,
+            west.sabi,
+            south.sabi,
+            sawara.sabi,
+            jyou.sabi,
+          ],
+          backgroundColor: '#DC669B',
+        },
+        {
+          label: 'その他',
+          data: [
+            east.other,
+            center.other,
+            hakata.other,
+            west.other,
+            south.other,
+            sawara.other,
+            jyou.other,
+          ],
+          backgroundColor: '#DD6673',
+        },
+      ] //datasetsここまで
 
-      var options_3 = {
-        plugins: {
-          legend: {
-            display: true,
-            position: 'right',
-          },
-          title: {
-            display: true,
-            position: 'top',
-            text: `${text}`,
-            font: {
-              size: 32
-            }
-          }, //titleここまで
-        }, //pluginsここまで
-      };
+    }; //data_3ここまで
 
+    var options_3 = {
+      scales: {
+        x: {
+          stacked: true
+        },
+        y: {
+          stacked: true,
+          suggestedMin: 0, //最小値を調節
+          suggestedMax: 30, //最大値を調節
+          stepSize: 10, //メモリの幅
+        },
+      },
+      plugins: {
+        legend: {
+          display: true,
+          position: 'right',
+        },
+        title: {
+          display: true,
+          position: 'top',
+          text: '猫たちの分布',
+          font: {
+            size: 32
+          }
+        }, //titleここまで
+      }, //pluginsここまで
 
-      if (myChart) {
-        myChart.destroy();
-      }
+    }; //options_3ここまで
 
-      var ctx_3 = document.getElementById('cat_chart_3').getContext('2d');
-      var myChart = new Chart(ctx_3, {
-        type: type_3,
-        data: data_3,
-        options: options_3,
-      });
+    var ctx_3 = document.getElementById('cat_chart_3').getContext('2d');
 
-
-    }); //changeイベントここまで
+    var myChart_3 = new Chart(ctx_3, {
+      type: type_3,
+      data: data_3,
+      options: options_3,
+    });
   </script>
-
 
 </body>
 
