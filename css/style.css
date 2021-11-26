@@ -113,6 +113,11 @@ h1 {
 }
 
 /*---------------- analyse.phpのスタイル -----------*/
+
+#main_2 {
+  display: flex;
+}
+
 #col_select {
   height: 30px;
   width: 200px;

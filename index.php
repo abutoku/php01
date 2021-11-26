@@ -69,7 +69,8 @@
         </section>
 
       </form>
-
+      
+      <!-- 猫の画像 -->
       <div id="img_contents">
         <img id="top_img" src="./img/cat_01.PNG" alt="猫">
       </div>
@@ -82,6 +83,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
   <script>
+    
     //最初の初期表示 
     $('#place_section').hide(); //場所選択を隠す
     $('#btn_section').hide(); //登録ボタンを隠す
